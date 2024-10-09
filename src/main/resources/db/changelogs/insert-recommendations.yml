@@ -1,0 +1,108 @@
+databaseChangeLog:
+  -  changeSet:
+       id: 2
+       author:  Andrey Khr
+       changes:
+         -  insert:
+              tableName:  recommendations
+              columns:
+                -  column:
+                     name:  id
+                     value:  147f6a0f-3b91-413b-ab99-87f081d60d5a
+                -  column:
+                     name:  name
+                     value:  Invest 500
+                -  column:
+                     name:  description
+                     value:  'Откройте свой путь к успеху с индивидуальным инвестиционным счетом (ИИС) от нашего банка! Воспользуйтесь налоговыми льготами и начните инвестировать с умом. Пополните счет до конца года и получите выгоду в виде вычета на взнос в следующем налоговом периоде. Не упустите возможность разнообразить свой портфель, снизить риски и следить за актуальными рыночными тенденциями. Откройте ИИС сегодня и станьте ближе к финансовой независимости!'
+                - column:
+                    name: condition
+                    value: "SELECT EXISTS (
+                            SELECT 1 FROM USERS u
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID
+                            WHERE u.ID = ?1 AND p.\"TYPE\" = 'DEBIT'
+                             )
+                             AND NOT EXISTS (
+                             SELECT 1 FROM USERS u2
+                             JOIN TRANSACTIONS t2 ON t2.USER_ID = u2.ID
+                             JOIN PRODUCTS p2 ON p2.ID = t2.PRODUCT_ID
+                             WHERE u2.ID = ?1 AND p2.\"TYPE\" = 'INVEST'
+                             )
+                             AND (
+                             SELECT COALESCE(SUM(t.AMOUNT), 0) FROM USERS u
+                             JOIN TRANSACTIONS t ON t.USER_ID = u.ID AND t.\"TYPE\" = 'DEPOSIT'
+                             JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID AND p.\"TYPE\" = 'SAVING'
+                             WHERE u.ID = ?1
+                             ) > 1000
+                             AS res;"
+         - insert:
+              tableName: recommendations
+              columns:
+                - column:
+                    name: id
+                    value: 59efc529-2fff-41af-baff-90ccd7402925
+                - column:
+                    name: name
+                    value: Top Saving
+                - column:
+                    name: description
+                    value: 'Откройте свою собственную «Копилку» с нашим банком! «Копилка» — это уникальный банковский инструмент, который поможет вам легко и удобно накапливать деньги на важные цели. Больше никаких забытых чеков и потерянных квитанций — всё под контролем!\nПреимущества «Копилки»:\nНакопление средств на конкретные цели. Установите лимит и срок накопления, и банк будет автоматически переводить определенную сумму на ваш счет.\nПрозрачность и контроль. Отслеживайте свои доходы и расходы, контролируйте процесс накопления и корректируйте стратегию при необходимости.\Безопасность и надежность. Ваши средства находятся под защитой банка, а доступ к ним возможен только через мобильное приложение или интернет-банкинг.\nНачните использовать «Копилку» уже сегодня и станьте ближе к своим финансовым целям!'
+                - column:
+                    name: condition
+                    value: "SELECT EXISTS (
+                            SELECT 1 FROM USERS u 
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID 
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID 
+                            WHERE u.ID = ?1 AND p.\"TYPE\" = 'DEBIT'
+                            )
+                            AND ((SELECT COALESCE(SUM(t.AMOUNT), 0) FROM USERS u
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID AND t.\"TYPE\" = 'DEPOSIT'
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID AND p.\"TYPE\" = 'DEBIT'
+                            WHERE u.ID = ?1 ) > 50000
+                            OR (SELECT COALESCE(SUM(t.AMOUNT), 0) FROM USERS u
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID AND t.\"TYPE\" = 'DEPOSIT'
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID AND p.\"TYPE\" = 'SAVING'
+                            WHERE u.ID = ?1) > 50000)
+                            AND (SELECT COALESCE(SUM(t.AMOUNT), 0) FROM USERS u
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID AND t.\"TYPE\" = 'DEPOSIT'
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID AND p.\"TYPE\" = 'DEBIT'
+                            WHERE u.ID = ?1 ) > (SELECT COALESCE(SUM(t.AMOUNT), 0) FROM USERS u
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID AND t.\"TYPE\" = 'WITHDRAW'
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID AND p.\"TYPE\" = 'DEBIT'
+                            WHERE u.ID = ?1 )
+                            AS res;"
+         -  insert:
+              tableName:  recommendations
+              columns:
+                -  column:
+                     name:  id
+                     value:  ab138afb-f3ba-4a93-b74f-0fcee86d447f
+                -  column:
+                     name:  name
+                     value:  SimpleCredit
+                -  column:
+                     name:  description
+                     value:  'Откройте мир выгодных кредитов с нами!\nИщете способ быстро и без лишних хлопот получить нужную сумму? Тогда наш выгодный кредит — именно то, что вам нужно! Мы предлагаем низкие процентные ставки, гибкие условия и индивидуальный подход к каждому клиенту.\nПочему выбирают нас:\nБыстрое рассмотрение заявки. Мы ценим ваше время, поэтому процесс рассмотрения заявки занимает всего несколько часов.\nУдобное оформление. Подать заявку на кредит можно онлайн на нашем сайте или в мобильном приложении.\nШирокий выбор кредитных продуктов. Мы предлагаем кредиты на различные цели: покупку недвижимости, автомобиля, образование, лечение и многое другое.\nНе упустите возможность воспользоваться выгодными условиями кредитования от нашей компании!'
+                - column:
+                    name: condition
+                    value: "SELECT NOT EXISTS (
+                            SELECT 1 FROM USERS u 
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID 
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID 
+                            WHERE u.ID = ?1 AND p.\"TYPE\" = 'CREDIT'
+                            )
+                            AND (SELECT COALESCE(SUM(t.AMOUNT), 0) FROM USERS u
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID AND t.\"TYPE\" = 'DEPOSIT'
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID AND p.\"TYPE\" = 'DEBIT'
+                            WHERE u.ID = ?1 ) > (SELECT COALESCE(SUM(t.AMOUNT), 0) FROM USERS u
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID AND t.\"TYPE\" = 'WITHDRAW'
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID AND p.\"TYPE\" = 'DEBIT'
+                            WHERE u.ID = ?1 )
+                            AND (
+                            SELECT COALESCE (SUM(t.AMOUNT), 0) FROM USERS u
+                            JOIN TRANSACTIONS t ON t.USER_ID = u.ID AND t.\"TYPE\" = 'WITHDRAW'
+                            JOIN PRODUCTS p ON p.ID = t.PRODUCT_ID AND p.\"TYPE\" = 'DEBIT'
+                            WHERE u.ID = ?1
+                            ) > 100000
+                            AS res;"
