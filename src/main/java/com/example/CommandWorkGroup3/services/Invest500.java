@@ -1,15 +1,20 @@
 package com.example.CommandWorkGroup3.services;
 
 import com.example.CommandWorkGroup3.interfaces.RecommendationRuleSet;
+import com.example.CommandWorkGroup3.recomendations.Recomendations;
+import com.example.CommandWorkGroup3.repository.RecommendationsRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 @Component("invest500")
 public class Invest500 implements RecommendationRuleSet {
+    private final RecommendationsRepository recommendationsRepository;
     private final String name = "invest500";
     private final String id = "147f6a0f-3b91-413b-ab99-87f081d60d5a";
-    private final String description = "Откройте свой путь к успеху " +
+    private final String text = "Откройте свой путь к успеху " +
             "с индивидуальным инвестиционным счетом (ИИС) " +
             "от нашего банка! " +
             "Воспользуйтесь налоговыми льготами и начните инвестировать с умом. " +
@@ -19,9 +24,17 @@ public class Invest500 implements RecommendationRuleSet {
             "снизить риски и следить за актуальными рыночными тенденциями. " +
             "Откройте ИИС сегодня и станьте ближе к финансовой независимости!";
 
-    @Override
-    public String getRecommendation(UUID user) {
-        return "invest 500";
+    Invest500(RecommendationsRepository recommendationsRepository) {
+        this.recommendationsRepository = recommendationsRepository;
     }
 
+
+    @Override
+    public Recomendations getRecommendation(UUID user) {
+        Recomendations recomendations = new Recomendations(name, id, text);
+        if (recommendationsRepository.getInvest500(user)) {
+            return recomendations;
+        } else return null;
+
+    }
 }
