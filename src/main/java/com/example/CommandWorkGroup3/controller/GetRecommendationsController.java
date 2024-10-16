@@ -1,18 +1,11 @@
 package com.example.CommandWorkGroup3.controller;
 
 import com.example.CommandWorkGroup3.DTO.RecommendationsDTO;
-import com.example.CommandWorkGroup3.recomendations.Recomendations;
-import com.example.CommandWorkGroup3.services.Invest500;
-import com.example.CommandWorkGroup3.services.SimpleCredit;
-import com.example.CommandWorkGroup3.services.TopSaving;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
+import com.example.CommandWorkGroup3.entity.Recommendations;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,7 +21,7 @@ public class GetRecommendationsController {
 
 
     @GetMapping()
-    public List<Recomendations> getRecommendationsInvest500(UUID user) {
+    public List<Recommendations> getRecommendationsInvest500(UUID user) {
         return recommendationsDTO.getRecommendation(user);
     }
 }

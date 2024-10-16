@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Alexey Shlapakov
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_recommendations
+                  name: id
+                  remarks: Идентификатор рекомендации
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  remarks: Название рекомендации
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: description
+                  remarks: Описание рекомендации
+                  type: TEXT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: condition
+                  remarks: Правило
+                  type: TEXT
+            remarks: Рекомендации
+            tableName: recommendations

@@ -1,9 +1,8 @@
 package com.example.CommandWorkGroup3.services;
 
 import com.example.CommandWorkGroup3.interfaces.RecommendationRuleSet;
-import com.example.CommandWorkGroup3.recomendations.Recomendations;
+import com.example.CommandWorkGroup3.entity.Recommendations;
 import com.example.CommandWorkGroup3.repository.RecommendationsRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -26,8 +25,8 @@ public class SimpleCredit implements RecommendationRuleSet {
     }
 
     @Override
-    public Recomendations getRecommendation(UUID user) {
-        Recomendations recomendations = new Recomendations(name, id, text);
+    public Recommendations getRecommendation(UUID user) {
+        Recommendations recomendations = new Recommendations(id, name, text);
         if(recommendationsRepository.getSimpleCredit(user)){
             return recomendations;
         } else return null;

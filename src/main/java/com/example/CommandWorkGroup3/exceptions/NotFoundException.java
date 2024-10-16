@@ -3,13 +3,13 @@ package com.example.CommandWorkGroup3.exceptions;
 import java.util.UUID;
 
 public abstract class NotFoundException extends RuntimeException {
-    private final String message;
-    public NotFoundException(String message) {
-        this.message = message;
+    private final long id;
+    public NotFoundException(long id) {
+        this.id = id;
     }
 
-    public String getMes() {
-        return message;
+    public long getMes() {
+        return id;
     }
 
 }
