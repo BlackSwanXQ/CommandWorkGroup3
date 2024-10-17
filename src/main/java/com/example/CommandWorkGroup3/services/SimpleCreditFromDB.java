@@ -1,10 +1,11 @@
 package com.example.CommandWorkGroup3.services;
 
-import com.example.CommandWorkGroup3.entity.Recommendations;
+import com.example.CommandWorkGroup3.dto.RecommendationsDTO;
 import com.example.CommandWorkGroup3.interfaces.RecommendationRuleSet;
 import com.example.CommandWorkGroup3.repository.RecommendationsRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 @Component("SimpleCreditFromDB")
 public class SimpleCreditFromDB implements RecommendationRuleSet {
@@ -25,10 +26,10 @@ public class SimpleCreditFromDB implements RecommendationRuleSet {
     }
 
     @Override
-    public Recommendations getRecommendation(UUID user) {
-        Recommendations recomendations = new Recommendations(id, name, text);
+    public Optional<RecommendationsDTO> getRecommendation(UUID user) {
+        RecommendationsDTO recomendations = new RecommendationsDTO(id, name, text);
         if(recommendationsRepository.getSimpleCreditFromDB(user)){
-            return recomendations;
-        } else return null;
+            return Optional.of(recomendations);
+        } else return Optional.empty();
     }
 }

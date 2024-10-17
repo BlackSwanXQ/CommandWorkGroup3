@@ -1,5 +1,6 @@
 package com.example.CommandWorkGroup3.repository;
 
+import com.example.CommandWorkGroup3.exceptions.RuleNotFoundException;
 import com.example.CommandWorkGroup3.interfaces.RulesRepository;
 import com.example.CommandWorkGroup3.services.RulesService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -113,10 +115,10 @@ public class RecommendationsRepository {
     }
 
     public Boolean getSimpleCreditFromDB(UUID user) {
-        String argumentsUserOf = rulesRepository.findByQuery("USER_OF").getArguments();
-        String argumentsActiveUserOf = rulesRepository.findByQuery("ACTIVE_USER_OF").getArguments();
-        List<String> argumentsTransactionSumCompare = Arrays.stream(rulesRepository.findByQuery("TRANSACTION_SUM_COMPARE").getArguments().split(", ")).toList();
-        List<String> argumentsTransactionSumCompareDepositWithdraw = Arrays.stream(rulesRepository.findByQuery("TRANSACTION_SUM_COMPARE_DEPOSIT_WITHDRAW").getArguments().split(", ")).toList();
+        String argumentsUserOf = rulesRepository.findByQuery("USER_OF").get().getArguments();
+        String argumentsActiveUserOf = rulesRepository.findByQuery("ACTIVE_USER_OF").get().getArguments();
+        List<String> argumentsTransactionSumCompare = Arrays.stream(rulesRepository.findByQuery("TRANSACTION_SUM_COMPARE").get().getArguments().split(", ")).toList();
+        List<String> argumentsTransactionSumCompareDepositWithdraw = Arrays.stream(rulesRepository.findByQuery("TRANSACTION_SUM_COMPARE_DEPOSIT_WITHDRAW").get().getArguments().split(", ")).toList();
 
         Boolean result = jdbcTemplate.queryForObject(
                 "SELECT NOT EXISTS (\n" +
