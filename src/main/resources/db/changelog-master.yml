@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: /db/changelogs/init.yml
+
+  - include:
+      file: /db/changelogs/insert-recommendations.yml
+
+  - include:
+      file: /db/changelogs/create-table-recommendations-v2.yml
