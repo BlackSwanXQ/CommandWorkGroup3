@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 1
-      author: Alexey Shlapakov
+      author: CommandWorkGroup3
       changes:
         - createTable:
             columns:

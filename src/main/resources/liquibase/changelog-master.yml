@@ -9,3 +9,6 @@ databaseChangeLog:
 
   - include:
          file: liquibase/insert-recommendations.yml
+
+  - include:
+      file: liquibase/master.xml

@@ -1,5 +1,7 @@
 package com.example.CommandWorkGroup3.configuration;
 
+import com.pengrad.telegrambot.TelegramBot;
+import com.pengrad.telegrambot.model.DeleteMyCommands;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,9 +34,16 @@ public class RecommendationsDataSourceConfiguration {
 
     @Primary
     @Bean(name = "defaultDataSource")
-//    public DataSource defaultDataSource(@Value("${spring.datasource.url}") DataSourceProperties properties) {
     public DataSource defaultDataSource(DataSourceProperties properties) {
         return properties.initializeDataSourceBuilder().build();
+    }
+
+
+    @Bean
+    public TelegramBot telegramBot(@Value("${telegram.bot.token}") String token) {
+        TelegramBot bot = new TelegramBot(token);
+        bot.execute(new DeleteMyCommands());
+        return bot;
     }
 
 }

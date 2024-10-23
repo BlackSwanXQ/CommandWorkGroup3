@@ -68,7 +68,6 @@ class RulesControllerRestTemplateTest {
                 Rules.class
         );
         Rules created = responseEntity.getBody();
-        System.out.println(created);
 
         Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions.assertThat(created).isNotNull();

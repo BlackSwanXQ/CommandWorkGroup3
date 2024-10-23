@@ -3,10 +3,7 @@ package com.example.CommandWorkGroup3.entity;
 import jakarta.persistence.*;
 import netscape.javascript.JSObject;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Rules {
@@ -14,9 +11,9 @@ public class Rules {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String query;
-    //    @ElementCollection
     private String arguments;
     private Boolean negate;
+
 
     public Rules(Long id, String query, String arguments, Boolean negate) {
         this.id = id;
@@ -24,6 +21,8 @@ public class Rules {
         this.arguments = arguments;
         this.negate = negate;
     }
+
+
 
     public Rules() {
     }
