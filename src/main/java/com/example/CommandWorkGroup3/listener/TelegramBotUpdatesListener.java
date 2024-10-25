@@ -67,7 +67,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 } else if ("/recommend".equals(text)) {
                     if (!userRecommendationTelegramRepository.findAllByUserId(chatId).isEmpty()) {
                         List<UserRecommendationTelegram> rules = new ArrayList<>(userRecommendationTelegramRepository.findAllByUserId(chatId));
-//                        List<String> args = rules.stream().map(r -> r.getRule().getArguments()).toList();
                         List<UserRecommendationTelegram> changeCount = rules.stream().map(r -> {
                             r.setCount(r.getCount() + 1);
                             return r;
@@ -104,7 +103,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 }
 
 
-//                createNotification(update);
             });
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -112,22 +110,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 
-//    private void createNotification(Update update) {
-//
-//        Matcher matcher = pattern.matcher(update.message().text());
-//        if (matcher.matches()) {
-//            // обрабатываем ситуацию, когда строка соответствует паттерну
-//            LocalDateTime dateTime = LocalDateTime.parse(matcher.group(1),
-//                    formatter);
-////                    DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
-//            NotificationTask notificationTask = new NotificationTask();
-//            notificationTask.setId(null);
-//            notificationTask.setDate(dateTime);
-//            notificationTask.setChatID(update.message().chat().id());
-//            notificationTask.setNotification(matcher.group(3));
-//            notificationTaskRepository.save(notificationTask);
-//        }
-//    }
 
     @Nullable
     private LocalDateTime parse(String dateTime) {

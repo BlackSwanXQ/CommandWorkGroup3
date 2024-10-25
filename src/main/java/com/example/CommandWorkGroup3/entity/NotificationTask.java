@@ -13,9 +13,7 @@ public class NotificationTask {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id")
     private Long id;
-    //    @Column (name = "chatid")
     private Long chatID;
     private LocalDateTime date;
     private String notification;

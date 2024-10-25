@@ -3,17 +3,13 @@ package com.example.CommandWorkGroup3.services;
 import com.example.CommandWorkGroup3.entity.Rules;
 import com.example.CommandWorkGroup3.entity.UserRecommendationTelegram;
 import com.example.CommandWorkGroup3.exceptions.RuleNotFoundException;
-import com.example.CommandWorkGroup3.interfaces.RulesRepository;
+import com.example.CommandWorkGroup3.repository.RulesRepository;
 import com.example.CommandWorkGroup3.repository.UserRecommendationTelegramRepository;
 import jakarta.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 @Service

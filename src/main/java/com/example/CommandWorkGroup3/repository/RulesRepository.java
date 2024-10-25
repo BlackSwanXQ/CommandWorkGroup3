@@ -1,8 +1,7 @@
-package com.example.CommandWorkGroup3.interfaces;
+package com.example.CommandWorkGroup3.repository;
 
 import com.example.CommandWorkGroup3.entity.Rules;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 

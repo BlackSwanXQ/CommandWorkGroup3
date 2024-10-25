@@ -21,8 +21,6 @@ public class TelegramBotClient {
         SendResponse sendResponse = telegramBot.execute(new SendMessage(chatId, message));
         if (!sendResponse.isOk()) {
             logger.error("Send message failed {}", sendResponse.message());
-//            Message message1 = new Message();
-//            message1.chat()
         }
     }
 }

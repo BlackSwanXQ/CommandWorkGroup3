@@ -5,12 +5,6 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-<!--    <preConditions>-->
-<!--        <not>-->
-<!--            <tableExists tableName="notification_task"/>-->
-<!--        </not>-->
-<!--    </preConditions>-->
-
     <changeSet id="create-notification_task table" author="black2swan">
         <comment>Create notification_task table</comment>
 

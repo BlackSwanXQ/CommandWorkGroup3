@@ -25,8 +25,4 @@ public class NotificationTaskService {
         notificationTaskRepository.save(notificationTask);
     }
 
-    @Transactional(readOnly = true)
-    public List<NotificationTask> findNotifications(LocalDateTime localDateTime) {
-        return notificationTaskRepository.findNotificationTaskByDate(localDateTime);
-    }
 }

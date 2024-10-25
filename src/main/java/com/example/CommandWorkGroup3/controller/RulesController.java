@@ -1,18 +1,13 @@
 package com.example.CommandWorkGroup3.controller;
 
 import com.example.CommandWorkGroup3.entity.Rules;
-import com.example.CommandWorkGroup3.interfaces.RulesRepository;
 import com.example.CommandWorkGroup3.services.RulesService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static java.util.Arrays.asList;
 
 @RestController
 @RequestMapping("/rules")
@@ -45,8 +40,5 @@ public class RulesController {
     public List<Rules> getAllRules() {
         return rulesService.getAllRules();
     }
-
-
-
 
 }

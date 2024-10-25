@@ -1,21 +1,15 @@
 package com.example.CommandWorkGroup3.dto;
 
-//@Entity
 public class RecommendationsDTO {
 
-
-    //    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String id;
     public String text;
     public String name;
-//    private final UUID user;
 
     public RecommendationsDTO(String id, String name, String text) {
         this.id = id;
         this.name = name;
         this.text = text;
-//        this.user = user;
     }
 
     public RecommendationsDTO() {

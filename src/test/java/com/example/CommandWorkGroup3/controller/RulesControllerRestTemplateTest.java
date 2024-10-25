@@ -1,7 +1,7 @@
 package com.example.CommandWorkGroup3.controller;
 
 import com.example.CommandWorkGroup3.entity.Rules;
-import com.example.CommandWorkGroup3.interfaces.RulesRepository;
+import com.example.CommandWorkGroup3.repository.RulesRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +17,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 import java.util.Random;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class RulesControllerRestTemplateTest {
@@ -112,7 +110,4 @@ class RulesControllerRestTemplateTest {
         Assertions.assertThat(forEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
         Assertions.assertThat(forEntity.getBody()).isEqualTo("Rule with id = %d not found".formatted(-1));
     }
-
-
-
 }

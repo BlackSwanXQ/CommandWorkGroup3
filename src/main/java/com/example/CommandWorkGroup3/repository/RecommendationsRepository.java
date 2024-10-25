@@ -1,8 +1,5 @@
 package com.example.CommandWorkGroup3.repository;
 
-import com.example.CommandWorkGroup3.exceptions.RuleNotFoundException;
-import com.example.CommandWorkGroup3.interfaces.RulesRepository;
-import com.example.CommandWorkGroup3.services.RulesService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -117,16 +114,7 @@ public class RecommendationsRepository {
         args.add(rulesRepository.findByQuery("ACTIVE_USER_OF").get().getArguments());
         args.addAll(Arrays.stream(rulesRepository.findByQuery("TRANSACTION_SUM_COMPARE").get().getArguments().split(", ")).toList());
         args.addAll(Arrays.stream(rulesRepository.findByQuery("TRANSACTION_SUM_COMPARE_DEPOSIT_WITHDRAW").get().getArguments().split(", ")).toList());
-//        System.out.println(args);
 
-//        String argumentsUserOf = rulesRepository.findByQuery("USER_OF").get().getArguments();
-//        System.out.println(argumentsUserOf);
-//        String argumentsActiveUserOf = rulesRepository.findByQuery("ACTIVE_USER_OF").get().getArguments();
-//        System.out.println(argumentsActiveUserOf);
-//        List<String> argumentsTransactionSumCompare = Arrays.stream(rulesRepository.findByQuery("TRANSACTION_SUM_COMPARE").get().getArguments().split(", ")).toList();
-//        System.out.println(argumentsTransactionSumCompare);
-//        List<String> argumentsTransactionSumCompareDepositWithdraw = Arrays.stream(rulesRepository.findByQuery("TRANSACTION_SUM_COMPARE_DEPOSIT_WITHDRAW").get().getArguments().split(", ")).toList();
-//        System.out.println(argumentsTransactionSumCompareDepositWithdraw);
 
         Boolean result = jdbcTemplate.queryForObject(
                 "SELECT NOT EXISTS (\n" +
@@ -153,14 +141,14 @@ public class RecommendationsRepository {
                 args.get(0),
                 user,
                 args.get(1),
-                args.get(6), // argumentsTransactionSumCompareDepositWithdraw.get(0),
+                args.get(6),
                 user,
-                args.get(6), //argumentsTransactionSumCompareDepositWithdraw.get(0),
+                args.get(6),
                 user,
-                args.get(2), //argumentsTransactionSumCompare.get(0),
-                args.get(3), //argumentsTransactionSumCompare.get(1),
+                args.get(2),
+                args.get(3),
                 user,
-                Integer.parseInt(args.get(5)) //Integer.parseInt(argumentsTransactionSumCompare.get(3))
+                Integer.parseInt(args.get(5))
 
         );
         return result;
