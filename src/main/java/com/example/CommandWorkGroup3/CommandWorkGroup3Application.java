@@ -8,6 +8,7 @@ public class CommandWorkGroup3Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CommandWorkGroup3Application.class, args);
+
 	}
 
 }

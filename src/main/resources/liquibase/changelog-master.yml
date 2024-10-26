@@ -1,0 +1,14 @@
+databaseChangeLog:
+
+  - include:
+        file: liquibase/scripts.sql
+
+
+  - include:
+         file: liquibase/init.yml
+
+  - include:
+         file: liquibase/insert-recommendations.yml
+
+  - include:
+      file: liquibase/master.xml
